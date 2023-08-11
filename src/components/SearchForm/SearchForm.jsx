@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import Notiflix from 'notiflix';
 import { Form, ButtonSearch, Input } from './SearchForm.styled';
 
 const SearchForm = ({ onSubmit }) => {
@@ -7,9 +8,18 @@ const SearchForm = ({ onSubmit }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
+    if (!query) {
+      Notiflix.Notify.warning('Please, enter movie title', {
+        position: 'center-top',
+        messageMaxLength: 180,
+        width: '360px',
+        fontSize: '20px',
+        cssAnimationStyle: 'zoom',
+      });
+    }
+
     if (query) {
       onSubmit(query);
-      setQuery('');
     }
   };
 
@@ -24,7 +34,9 @@ const SearchForm = ({ onSubmit }) => {
         value={query}
         onChange={e => setQuery(e.target.value)}
       />
-      <ButtonSearch type="submit">Search</ButtonSearch>
+      <ButtonSearch type="submit" disabled={query === ''}>
+        Search
+      </ButtonSearch>
     </Form>
   );
 };
