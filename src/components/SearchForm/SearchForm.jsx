@@ -32,9 +32,7 @@ const SearchForm = ({ onSubmit }) => {
         value={query}
         onChange={e => setQuery(e.target.value)}
       />
-      <ButtonSearch type="submit" disabled={query === ''}>
-        Search
-      </ButtonSearch>
+      <ButtonSearch type="submit">Search</ButtonSearch>
     </Form>
   );
 };
