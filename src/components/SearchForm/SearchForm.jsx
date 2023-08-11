@@ -16,9 +16,7 @@ const SearchForm = ({ onSubmit }) => {
         fontSize: '20px',
         cssAnimationStyle: 'zoom',
       });
-    }
-
-    if (query) {
+    } else {
       onSubmit(query);
     }
   };
